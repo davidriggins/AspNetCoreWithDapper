@@ -12,10 +12,10 @@ namespace Adonet_Blog.Controllers
         PostService _postService;
 
         public HomeController(ILogger<HomeController> logger,
-            IServiceProvider serviceProvider)
+            IConfiguration configuration)
         {
             _logger = logger;
-            _postService = new PostService(serviceProvider);
+            _postService = new PostService(configuration);
         }
 
         public IActionResult Index()

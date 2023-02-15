@@ -60,5 +60,30 @@ namespace Adonet_Blog.Services
 
             return users;
         }
+
+
+        public User Login(User user)
+        {
+            return Login(user.UserName, user.Password);
+        }
+
+        public User Login(string username, string password)
+        {
+            User myUser = new User();
+            string mySqlQuery = "select * from [User] where Username = @usernmae and Password = @password";
+            myCommand = new SqlCommand(mySqlQuery, myConnection);
+            myCommand.Parameters.AddWithValue("@username", username);
+            myCommand.Parameters.AddWithValue("@password", password);
+            IDataReader dataReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (dataReader.Read())
+            {
+                myUser.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
+                myUser.UserName = dataReader["Username"] is DBNull ? string.Empty : dataReader["Username"].ToString();
+                myUser.Password = dataReader["Password"] is DBNull ? string.Empty : dataReader["Password"].ToString();
+            }
+
+            return myUser;
+        }
     }
 }

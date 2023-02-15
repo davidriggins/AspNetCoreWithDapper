@@ -7,5 +7,6 @@ namespace Adonet_Blog.Models
         public List<Post> postList { get; set; }
         public Post post { get; set; }
         public List<User> userList { get; set; }
+        public User user { get; set; }
     }
 }
