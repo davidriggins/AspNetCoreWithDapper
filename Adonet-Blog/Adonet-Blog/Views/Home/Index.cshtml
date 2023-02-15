@@ -1,8 +1,26 @@
-﻿@{
+﻿@model BlogModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (Model.postList.Count > 0)
+{
+    @foreach (var post in Model.postList)
+    {
+        <div class="card text-center mb-5 mt-3" style="width: 60%;margin:auto 20%">
+            <img src="~/img/blog-1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@post.Title</h5>
+                <small>@post.Publishing_Date</small>
+                <p class="card-text">@(post.Content.Length > 150 ? post.Content.Substring(0,150)+"...": post.Content)</p>
+                <a asp-controller="Home" asp-action="PostDetail" asp-route-id="@post.PostId" class="btn btn-primary">More</a>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert alert-danger">
+        <p>THere is no post to display!</p>
+    </div>
+}
