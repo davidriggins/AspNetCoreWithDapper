@@ -1,0 +1,38 @@
+﻿@model BlogModel
+
+@if (ViewBag.Error != null && ViewBag.Error != "")
+{
+    <div class="alert alert-danger">
+        <div>@ViewBag.Error</div>
+    </div>
+}
+
+<div class="container mt-5">
+    <form asp-action="Update" asp-controller="User" method="post">
+
+        <input type="hidden" asp-for="@Model.post.PostId" />
+
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">Title</div>
+                <div class="col-9">
+                    <input type="text" asp-for="@Model.post.Title" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">Content</div>
+                <div class="col-9">
+                    <textarea asp-for="@Model.post.Content" class="form-control" style="width:100%; height:400px" required></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <input type="submit" value="Create" class="btn btn-success" />
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

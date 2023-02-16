@@ -101,7 +101,7 @@ namespace Adonet_Blog.Services
         public bool Create(Post post)
         {
             bool result = false;
-            string mySqlQuery = "insert into Post (UserId,Title,Content,Publishing_Date,Modified_Date) value (@UserId,@Title,@Content,@Publishing_Date,@Modified_Date)";
+            string mySqlQuery = "insert into Post (UserId,Title,Content,Publishing_Date,Modified_Date) values (@UserId,@Title,@Content,@Publishing_Date,@Modified_Date)";
             myCommand = new SqlCommand(mySqlQuery, myConnection);
             myCommand.Parameters.AddWithValue("@UserId", post.UserId);
             myCommand.Parameters.AddWithValue("@Title", post.Title);
@@ -115,5 +115,21 @@ namespace Adonet_Blog.Services
             return result;
         }
 
+
+        public bool Update(Post post)
+        {
+            bool result = false;
+            string mySqlQuery = "update Post set Title=@title,Content=@content,Modified_Date=@modified_date where PostId=@id";
+            myCommand = new SqlCommand(mySqlQuery, myConnection);
+            myCommand.Parameters.AddWithValue("@title", post.Title);
+            myCommand.Parameters.AddWithValue("@content", post.Content);
+            myCommand.Parameters.AddWithValue("@modified_date", post.Modified_Date);
+            myCommand.Parameters.AddWithValue("@id", post.PostId);
+
+            int success = myCommand.ExecuteNonQuery();
+            result = success == 0 ? false : true;
+
+            return result;
+        }
     }
 }

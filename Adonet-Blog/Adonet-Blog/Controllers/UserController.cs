@@ -123,5 +123,42 @@ namespace Adonet_Blog.Controllers
                 return View();
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Post myPost = postService.Get(id);
+
+            if (myPost.PostId == 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            BlogModel model = new BlogModel()
+            {
+                post = myPost
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public IActionResult Update(Post post)
+        {
+            post.Modified_Date = DateTime.Now;
+            Boolean success = postService.Update(post);
+
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = "Something went wrong updating the post.";
+                return View();
+            }
+        }
     }
 }
