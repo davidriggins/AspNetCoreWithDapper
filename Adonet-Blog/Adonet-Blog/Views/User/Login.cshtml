@@ -1,21 +1,34 @@
-﻿
+﻿@model LoginModel
 
-<form method="post" asp-controller="User" asp-action="Login">
+<div class="container">
 
-    <div class="col-6 offset-3 mt-5">
-        <div class="form-group">
-            <lable>Username</lable>
-            <input type="text" name="Username" />
+    <h3>Login Form</h3>
+
+    @if (!Model.Success)
+    {
+        <div class="alert alert-danger">
+            <div>@Model.Message</div>
         </div>
 
-        <div class="form-group">
-            <lable>Password</lable>
-            <input type="password" name="Password" />
+    }
+
+    <form method="post" asp-controller="User" asp-action="Login">
+
+        <div class="col-6 offset-3 mt-5">
+            <div class="form-group">
+                <lable>Username</lable>
+                <input type="text" name="Username" asp-for="@Model.user.UserName" />
+            </div>
+
+            <div class="form-group">
+                <lable>Password</lable>
+                <input type="password" name="Password" asp-for="@Model.user.Password" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
         </div>
 
-        <div class="form-group">
-            <input type="submit" value="Login" class="btn btn-primary" />
-        </div>
-    </div>
-
-</form>
+    </form>
+</div>

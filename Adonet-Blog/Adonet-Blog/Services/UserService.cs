@@ -70,7 +70,7 @@ namespace Adonet_Blog.Services
         public User Login(string username, string password)
         {
             User myUser = new User();
-            string mySqlQuery = "select * from [User] where Username = @usernmae and Password = @password";
+            string mySqlQuery = "select * from [User] where Username = @username and Password = @password";
             myCommand = new SqlCommand(mySqlQuery, myConnection);
             myCommand.Parameters.AddWithValue("@username", username);
             myCommand.Parameters.AddWithValue("@password", password);
