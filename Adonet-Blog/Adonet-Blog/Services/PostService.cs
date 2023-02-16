@@ -19,7 +19,7 @@ namespace Adonet_Blog.Services
         {
             List<Post> posts = new List<Post>();
 
-            myCommand = new SqlCommand("select * from Post", myConnection);
+            myCommand = new SqlCommand("select Post.*, [User].Username from Post right join [User] ON [User].UserId = Post.UserId", myConnection);
             myCommand.CommandType = CommandType.Text;
             IDataReader dataReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -40,6 +40,14 @@ namespace Adonet_Blog.Services
                 {
                     post.Publishing_Date = DateTime.Parse(dataReader["Modified_Date"].ToString());
                 }
+
+                User myUser = new User()
+                {
+                    UserId = post.UserId,
+                    UserName = dataReader["Username"] is DBNull ? "This post has been deleted!" : dataReader["Username"].ToString()
+                };
+
+                post.Writer = myUser;
 
                 posts.Add(post);
             }

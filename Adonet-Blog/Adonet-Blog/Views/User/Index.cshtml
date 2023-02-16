@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model BlogModel
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Writer</td>
+                <td>To Do List</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var post in Model.postList)
+            {
+                <tr>
+                    <td>@post.PostId</td>
+                    <td>@post.Title</td>
+                    <td>@post.Writer.UserName</td>
+                    <td>
+                        <a class="btn btn-info">Edit</a>
+                        <a class="btn btn-danger">Delete</a>
+                    </td>
+                    
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="4">
+                    <a class="btn btn-info">Create</a>
+                </th>
+            </tr>
+        </tfoot>
+
+    </table>
+
+</div>

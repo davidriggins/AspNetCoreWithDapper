@@ -9,10 +9,12 @@ namespace Adonet_Blog.Controllers
     public class UserController : Controller
     {
         private UserService userService;
+        private PostService postService;
 
         public UserController(IConfiguration configuration)
         {
             userService = new UserService(configuration);
+            postService= new PostService(configuration);
         }
 
 
@@ -27,8 +29,17 @@ namespace Adonet_Blog.Controllers
             {
                 return RedirectToAction("Login");
             }
+            else
+            {
+                List<Post> posts = postService.GetAll();
+                BlogModel model = new BlogModel()
+                {
+                    postList = posts
+                };
 
-            return View();
+                return View(model);
+            }
+
         }
 
 
