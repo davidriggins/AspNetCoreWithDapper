@@ -2,6 +2,7 @@
 using Adonet_Blog.Models;
 using Adonet_Blog.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Adonet_Blog.Controllers
 {
@@ -14,7 +15,7 @@ namespace Adonet_Blog.Controllers
         public UserController(IConfiguration configuration)
         {
             userService = new UserService(configuration);
-            postService= new PostService(configuration);
+            postService = new PostService(configuration);
         }
 
 
@@ -91,6 +92,36 @@ namespace Adonet_Blog.Controllers
                 return View("Login", model);
             }
 
+        }
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            BlogModel model = new BlogModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(Post post)
+        {
+            post.Publishing_Date = DateTime.Now;
+            post.Modified_Date = DateTime.Now;
+
+            post.UserId = int.Parse(HttpContext.Request.Cookies["userid"].ToString());
+            bool success = postService.Create(post);
+
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+
+            else
+            {
+                ViewBag.Error = "Something went wrong creating the post.";
+                return View();
+            }
         }
     }
 }

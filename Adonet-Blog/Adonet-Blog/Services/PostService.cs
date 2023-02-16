@@ -19,7 +19,7 @@ namespace Adonet_Blog.Services
         {
             List<Post> posts = new List<Post>();
 
-            myCommand = new SqlCommand("select Post.*, [User].Username from Post right join [User] ON [User].UserId = Post.UserId", myConnection);
+            myCommand = new SqlCommand("select Post.*, [User].Username from Post left join [User] ON [User].UserId = Post.UserId", myConnection);
             myCommand.CommandType = CommandType.Text;
             IDataReader dataReader = myCommand.ExecuteReader(CommandBehavior.CloseConnection);
 
@@ -60,7 +60,7 @@ namespace Adonet_Blog.Services
         {
             Post post = new Post();
 
-            string mySqlQuery = "select Post.*, [User].Username from Post right join [User] ON [User].UserId = Post.UserId where Post.PostId = @id";
+            string mySqlQuery = "select Post.*, [User].Username from Post left join [User] ON [User].UserId = Post.UserId where Post.PostId = @id";
             //string mySqlQuery = "select * from Post where PostId = @id";
 
             myCommand = new SqlCommand(mySqlQuery, myConnection);
@@ -95,6 +95,24 @@ namespace Adonet_Blog.Services
             }
 
             return post;
+        }
+
+
+        public bool Create(Post post)
+        {
+            bool result = false;
+            string mySqlQuery = "insert into Post (UserId,Title,Content,Publishing_Date,Modified_Date) value (@UserId,@Title,@Content,@Publishing_Date,@Modified_Date)";
+            myCommand = new SqlCommand(mySqlQuery, myConnection);
+            myCommand.Parameters.AddWithValue("@UserId", post.UserId);
+            myCommand.Parameters.AddWithValue("@Title", post.Title);
+            myCommand.Parameters.AddWithValue("@Content", post.Content);
+            myCommand.Parameters.AddWithValue("@Publishing_Date", post.Publishing_Date);
+            myCommand.Parameters.AddWithValue("@Modified_Date", post.Modified_Date);
+
+            int success = myCommand.ExecuteNonQuery();
+            result = success == 0 ? false : true;
+
+            return result;
         }
 
     }
