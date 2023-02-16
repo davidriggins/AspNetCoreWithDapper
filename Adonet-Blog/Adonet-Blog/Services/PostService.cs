@@ -1,4 +1,5 @@
 ﻿using Adonet_Blog.Entities;
+using Microsoft.Extensions.Hosting;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -130,6 +131,27 @@ namespace Adonet_Blog.Services
             result = success == 0 ? false : true;
 
             return result;
+        }
+
+
+        public bool Delete(int id)
+        {
+            bool result = false;
+            string mySqlQuery = "delete from Post where PostId=@id";
+            myCommand = new SqlCommand(mySqlQuery, myConnection);
+            myCommand.Parameters.AddWithValue("@id", id);
+
+            int success = myCommand.ExecuteNonQuery();
+            result = success == 0 ? false : true;
+
+            return result;
+        }
+
+
+
+        public bool Delete(Post post)
+        {
+            return Delete(post.PostId);
         }
     }
 }

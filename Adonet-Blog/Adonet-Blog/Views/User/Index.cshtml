@@ -20,7 +20,7 @@
                     <td>@post.Writer.UserName</td>
                     <td>
                         <a class="btn btn-info" asp-controller="User" asp-action="Update" asp-route-id="@post.PostId">Edit</a>
-                        <a class="btn btn-danger">Delete</a>
+                        <a class="btn btn-danger" asp-controller="User" asp-action="Delete" asp-route-id="@post.PostId">Delete</a>
                     </td>
                     
                 </tr>

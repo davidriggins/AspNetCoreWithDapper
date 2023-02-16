@@ -160,5 +160,65 @@ namespace Adonet_Blog.Controllers
                 return View();
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id = 0)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Post post = postService.Get(id);
+                if (post == null)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    BlogModel model = new BlogModel
+                    {
+                        post = post
+                    };
+
+                    return View(model);
+                }
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult Delete(BlogModel model)
+        {
+            bool success = postService.Delete(model.post);
+            if (success)
+            {
+                ViewBag.success = "Post has been deleted!";
+                return View("DeleteIt");
+            }
+            else
+            {
+                ViewBag.error = "Failed to delete the post.";
+                return View();
+            }
+        }
+
+
+        public IActionResult DeleteIt(int id)
+        {
+            bool success = postService.Delete(id);
+            if (success)
+            {
+                ViewBag.success = "Post has been deleted!";
+            }
+            else
+            {
+                ViewBag.error = "Failed to delete the post.";
+            }
+
+            return View();
+        }
     }
 }
