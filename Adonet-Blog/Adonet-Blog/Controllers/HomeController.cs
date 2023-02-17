@@ -50,5 +50,17 @@ namespace Adonet_Blog.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Search([FromQuery(Name ="q")] string searchText = "")
+        {
+            List<Post> mySearchList = _postService.GetSearch(searchText);
+            BlogModel model = new BlogModel
+            {
+                postList = mySearchList
+            };
+
+
+            return View("Index", model);
+        }
     }
 }
