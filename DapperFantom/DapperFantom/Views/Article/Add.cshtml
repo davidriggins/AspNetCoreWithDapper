@@ -61,7 +61,7 @@
                         </select>
                     </div>
                     <div class="mt-10">
-                        <textarea asp-for="@Model.Article.Content" class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
+                        <textarea asp-for="@Model.Article.Content" name="Content" class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
                     </div>
 
                     <div class="mt-10" onclick="$('#image').click();">
