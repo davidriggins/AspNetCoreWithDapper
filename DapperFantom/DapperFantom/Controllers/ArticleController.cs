@@ -9,10 +9,12 @@ namespace DapperFantom.Controllers
     public class ArticleController : Controller
     {
         private CategoryService categoryService;
+        private CityService cityService;
 
         public ArticleController(IServiceProvider serviceProvider)
         {
             categoryService = serviceProvider.GetRequiredService<CategoryService>();
+            cityService = serviceProvider.GetRequiredService<CityService>();
         }
 
         public IActionResult Index()
@@ -24,10 +26,12 @@ namespace DapperFantom.Controllers
         public IActionResult Add()
         {
             List<Category> categories = categoryService.GetAll();
+            List<City> cities = cityService.GetAll();
 
             GeneralViewModel model = new GeneralViewModel
             {
-                CategoryList= categories,
+                CategoryList = categories,
+                CityList = cities
             };
 
             return View(model);

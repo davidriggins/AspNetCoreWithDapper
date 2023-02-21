@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CityService>();
 
 var app = builder.Build();
 

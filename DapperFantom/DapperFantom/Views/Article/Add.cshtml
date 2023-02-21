@@ -47,6 +47,10 @@
                     <div class="mt-10">
                         <select name="CityId" required class="form-control">
                             <option value="">Please select a City</option>
+                            @foreach (var city in Model.CityList)
+                            {
+                                <option value="@city.CityId">@city.CityName</option>
+                            }
                         </select>
                     </div>
                     <div class="mt-10">
