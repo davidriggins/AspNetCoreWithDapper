@@ -38,7 +38,7 @@ namespace DapperFantom.Services
             return categories;
         }
 
-        public List<Category> GetAllDapper()
+        public List<Category> GetAll()
         {
             List<Category> categories = new List<Category>();
             try
