@@ -1,4 +1,6 @@
-﻿    <!--================Home Banner Area =================-->
+﻿@model GeneralViewModel
+
+<!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
         <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
@@ -19,6 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                <h1 class="text-center mb-20">Add A New Article</h1>
                 <form action="Save" method="post" enctype="multipart/form-data">
                     <div class="mt-10">
                         <input type="text" name="NameSurname" placeholder="First Name and Surname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name and Surname'" required="" class="single-input">
@@ -33,11 +36,12 @@
                         <input type="text" name="Title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'" required="" class="single-input">
                     </div>
                     <div class="mt-10">
-                        <textarea class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
-                    </div>
-                    <div class="mt-10">
                         <select name="CategoryId" required class="form-control">
                             <option value="">Please select a catagory</option>
+                            @foreach (var category in Model.CategoryList)
+                            {
+                                <option value="@category.CategoryId">@category.CategoryName</option>
+                            }
                         </select>
                     </div>
                     <div class="mt-10">
@@ -45,6 +49,10 @@
                             <option value="">Please select a City</option>
                         </select>
                     </div>
+                    <div class="mt-10">
+                        <textarea class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
+                    </div>
+
                 </form>
             </div>
         </div>
