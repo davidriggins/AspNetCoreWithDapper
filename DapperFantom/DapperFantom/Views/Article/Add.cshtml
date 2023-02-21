@@ -23,20 +23,27 @@
             <div class="col-lg-12">
                 <h1 class="text-center mb-20">Add A New Article</h1>
                 <form action="Save" method="post" enctype="multipart/form-data">
+                    <div class="col-md-12">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+
                     <div class="mt-10">
-                        <input type="text" name="NameSurname" placeholder="First Name and Surname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name and Surname'" required="" class="single-input">
+                        <input type="text" asp-for="@Model.Article.NameSurname" name="NameSurname" placeholder="First Name and Surname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name and Surname'" required="" class="single-input">
+                        <span asp-asp-validation-for="@Model.Article.NameSurname" class="text-danger"></span>
                     </div>
                     <div class="mt-10">
-                        <input type="text" name="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required="" class="single-input">
+                        <input type="text" asp-for="@Model.Article.EMail" name="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required="" class="single-input">
+                        <span asp-asp-validation-for="@Model.Article.EMail" class="text-danger"></span>
                     </div>
                     <div class="mt-10">
                         <input type="text" name="Phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'" class="single-input">
                     </div>
                     <div class="mt-10">
-                        <input type="text" name="Title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'" required="" class="single-input">
+                        <input type="text" asp-for="@Model.Article.Title" name="Title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'" required="" class="single-input">
+                        <span asp-asp-validation-for="@Model.Article.Title" class="text-danger"></span>
                     </div>
                     <div class="mt-10">
-                        <select name="CategoryId" required class="form-control">
+                        <select asp-for="@Model.Article.CategoryId" name="CategoryId" required class="form-control">
                             <option value="">Please select a catagory</option>
                             @foreach (var category in Model.CategoryList)
                             {
@@ -45,7 +52,7 @@
                         </select>
                     </div>
                     <div class="mt-10">
-                        <select name="CityId" required class="form-control">
+                        <select asp-for="@Model.Article.CityId" name="CityId" required class="form-control">
                             <option value="">Please select a City</option>
                             @foreach (var city in Model.CityList)
                             {
@@ -54,7 +61,7 @@
                         </select>
                     </div>
                     <div class="mt-10">
-                        <textarea class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
+                        <textarea asp-for="@Model.Article.Content" class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
                     </div>
 
                     <div class="mt-10" onclick="$('#image').click();">
@@ -98,6 +105,7 @@
             }
         });
     </script>
-    
+
     <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
 }

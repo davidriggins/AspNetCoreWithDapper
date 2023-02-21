@@ -23,6 +23,7 @@ namespace DapperFantom.Entities
         public int CityId { get; set; }
 
         [Required(ErrorMessage = "Please enter an Email")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a correct email")]
         public string EMail { get; set; }
         public string Phone { get; set; }
 
