@@ -22,7 +22,28 @@
                 <form action="Save" method="post" enctype="multipart/form-data">
                     <div class="mt-10">
                         <input type="text" name="NameSurname" placeholder="First Name and Surname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name and Surname'" required="" class="single-input">
-
+                    </div>
+                    <div class="mt-10">
+                        <input type="text" name="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'" required="" class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="text" name="Phone" placeholder="Phone" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'" class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <input type="text" name="Title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'" required="" class="single-input">
+                    </div>
+                    <div class="mt-10">
+                        <textarea class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
+                    </div>
+                    <div class="mt-10">
+                        <select name="CategoryId" required class="form-control">
+                            <option value="">Please select a catagory</option>
+                        </select>
+                    </div>
+                    <div class="mt-10">
+                        <select name="CityId" required class="form-control">
+                            <option value="">Please select a City</option>
+                        </select>
                     </div>
                 </form>
             </div>
