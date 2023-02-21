@@ -57,9 +57,47 @@
                         <textarea class="single-textarea" placeholder="Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Content'" required=""></textarea>
                     </div>
 
+                    <div class="mt-10" onclick="$('#image').click();">
+                        Upload Images <br />
+                        <label class="btn btn-default">
+                            <div class="fileUpload">
+                                <span>Select An Image</span>
+                                <input type="file" class="uploadFile" name="file" />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="mt-10">
+                        <button type="submit" class="genric-btn success circle arrow">Post<span class="lnr lnr-arrow-right"></span></button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </section>
 <!--================Contact Area =================-->
+@section Scripts {
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Upload button on change call function
+            $(".uploadFile").change(function () {
+                readURL(this);
+            });
+
+            // Read file and return value
+            function readURL(input) {
+                var url = input.value;
+                var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                if (input.files && input.files[0] && (ext == "png" || ext == "jpeg" || ext == "jpg")) {
+
+                }
+                else {
+                    alert("Only image files are acceptable!")
+                    $('.uploadFile').val('');
+                }
+            }
+        });
+    </script>
+    
+    <script src="~/js/jquery.validate.min.js"></script>
+}

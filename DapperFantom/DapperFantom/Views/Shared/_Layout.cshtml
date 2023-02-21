@@ -44,6 +44,8 @@
     <script src="~/js/jquery.ajaxchimp.min.js"></script>
     <script src="~/js/mail-script.js"></script>
     <script src="~/js/theme.js"></script>
+
+    @await RenderSectionAsync("Scripts", required:false)
 </body>
 
 </html>
