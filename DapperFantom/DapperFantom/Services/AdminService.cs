@@ -88,5 +88,21 @@ namespace DapperFantom.Services
                 return new Admin();
             }
         }
+
+        public bool Delete(Admin admin)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", admin.AdminId);
+
+                connection.Execute("delete from Admins where AdminId=@id", parameters);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

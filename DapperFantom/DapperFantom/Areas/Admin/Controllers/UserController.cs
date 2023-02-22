@@ -74,5 +74,31 @@ namespace DapperFantom.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Entities.Admin admin = adminService.Get(id);
+
+            return View(admin);
+        }
+
+        [HttpPost,ValidateAntiForgeryToken]
+        // Only included second argument to distinguish between Get version.
+        public IActionResult Delete(int id, IFormFile file)
+        {
+            Entities.Admin admin = adminService.Get(id);
+            bool result = adminService.Delete(admin);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(admin);
+            }
+        }
     }
 }
