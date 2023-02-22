@@ -26,7 +26,7 @@ namespace DapperFantom.Services
                 parameters.Add("@username", admin.Username);
                 parameters.Add("@password", admin.Password);
 
-                myAdmin = connection.Query<Admin>($@"select id as AdminId,Username,Password from Admins where Username=@username and Password=@password", parameters).FirstOrDefault();
+                myAdmin = connection.Query<Admin>($@"select AdminId,Username,Password from Admins where Username=@username and Password=@password", parameters).FirstOrDefault();
             }
             catch (Exception ex)
             {
