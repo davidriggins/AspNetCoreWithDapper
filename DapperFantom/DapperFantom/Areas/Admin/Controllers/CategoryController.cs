@@ -62,8 +62,8 @@ namespace DapperFantom.Areas.Admin.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(int id, Entities.Category category)
         {
-            Entities.Category result = categoryService.Update(category);
-            if (result == null)
+            bool result = categoryService.Update(category);
+            if (!result)
             {
                 ViewBag.Error = "Something went wrong, please try again.";
                 return View(category);
@@ -71,6 +71,32 @@ namespace DapperFantom.Areas.Admin.Controllers
             else
             {
                 return RedirectToAction("Index");
+            }
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Entities.Category category = categoryService.Get(id);
+
+            return View(category);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        // Only included second argument to distinguish between Get version.
+        public IActionResult Delete(int id, IFormFile file)
+        {
+            Entities.Category category = categoryService.Get(id);
+            bool result = categoryService.Delete(category);
+            if (result)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(category);
             }
         }
     }

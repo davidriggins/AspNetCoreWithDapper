@@ -80,21 +80,50 @@ namespace DapperFantom.Services
             return category;
         }
 
-        public Category Update(Category category)
+        //public Category Update(Category category)
+        //{
+        //    try
+        //    {
+        //        var parameters = new DynamicParameters();
+        //        parameters.Add("@id", category.CategoryId);
+        //        parameters.Add("@category", category.CategoryName);
+        //        parameters.Add("@slug", category.Slug);
+
+        //        connection.Execute("update Categorys set CategoryName=@category, Slug=@slug where CategoryId=@id", parameters);
+        //        return category;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new Category();
+        //    }
+        //}
+
+        public bool Update(Category category)
         {
             try
             {
-                var parameters = new DynamicParameters();
-                parameters.Add("@id", category.CategoryId);
-                parameters.Add("@category", category.CategoryName);
-                parameters.Add("@slug", category.Slug);
-
-                connection.Execute("update Categorys set CategoryName=@category, Slug=@slug where CategoryId=@id", parameters);
-                return category;
+                bool result = connection.Update(category);
+                return result;
             }
             catch (Exception)
             {
-                return new Category();
+
+                return false;
+            }
+        }
+
+
+        public bool Delete(Category category)
+        {
+            try
+            {
+                bool result = connection.Delete(category);
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
         }
 
