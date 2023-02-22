@@ -21,5 +21,39 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return View(admin);
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Index(Entities.Admin admin)
+        {
+            if (admin.Username != "" || admin.Password != "")
+            {
+                Entities.Admin myAdmin = adminService.Login(admin);
+                if (myAdmin == null)
+                {
+                    ViewBag.Error = "Something went wrong, please try again!";
+                    return View(admin);
+                }
+                else
+                {
+                    CookieOptions useridCookie = new CookieOptions();
+                    useridCookie.Expires= DateTime.Now.AddDays(3);
+                    Response.Cookies.Append("userid", myAdmin.AdminId.ToString(), useridCookie);
+
+                    CookieOptions usernameCookie = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddDays(3),
+                    };
+                    Response.Cookies.Append("username", myAdmin.Username, usernameCookie);
+
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                ViewBag.Error = "Please check your username or password";
+                return View(admin);
+            }
+
+        }
     }
 }
