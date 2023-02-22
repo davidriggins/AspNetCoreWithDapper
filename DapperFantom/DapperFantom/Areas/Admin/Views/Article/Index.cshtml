@@ -25,6 +25,7 @@
                                 </a>
                             </td>
                             <td>@article.NameSurname</td>
+                            <td>@article.Title</td>
                             <td>@article.CreatedDate.ToShortDateString()</td>
                             <td>@article.Status</td>
                             <td>
@@ -36,16 +37,6 @@
                         </tr>
                     }
                 </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td>
-                        <td colspan="4">
-                            <a asp-action="Add" asp-controller="User" class="btn btn-success">Add User</a>
-                        </td>
-                        </td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>
