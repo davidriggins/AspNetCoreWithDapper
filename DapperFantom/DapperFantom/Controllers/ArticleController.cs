@@ -1,4 +1,5 @@
 ﻿using DapperFantom.Entities;
+using DapperFantom.Helpers;
 using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace DapperFantom.Controllers
     {
         private CategoryService categoryService;
         private CityService cityService;
+        private IWebHostEnvironment hosting;
 
         public ArticleController(IServiceProvider serviceProvider)
         {
             categoryService = serviceProvider.GetRequiredService<CategoryService>();
             cityService = serviceProvider.GetRequiredService<CityService>();
+            hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
         }
 
         public IActionResult Index()
@@ -49,6 +52,16 @@ namespace DapperFantom.Controllers
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 model.PublishingDate= DateTime.Now;
+
+                if (file.Length> 0)
+                {
+                    UploadHelpers uploadHelpers = new UploadHelpers(hosting);
+                    string fileName = await uploadHelpers.Upload(file);
+                    if (fileName != "")
+                    {
+                        model.Image = fileName;
+                    }
+                }
             }
             else
             {
