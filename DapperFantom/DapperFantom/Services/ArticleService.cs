@@ -44,5 +44,26 @@ namespace DapperFantom.Services
 
             return article;
         }
+
+
+        public Article GetByGuid(string guid)
+        {
+            Article article = new();
+
+            try
+            {
+
+                var parameter = new DynamicParameters();
+                parameter.Add("@guid", guid);
+                article = connection.Query<Article>(@"select * from Articles where Guid = @guid", parameter).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return article;
+        }
+
     }
 }

@@ -71,7 +71,7 @@ namespace DapperFantom.Controllers
                 {
                     Article article = articleService.GetById(result);
 
-                    return RedirectToAction("Detail", new { id = article.ArticleId });
+                    return RedirectToAction("Detail", new { id = article.Guid });
                 }
                 else
                 {
@@ -91,9 +91,11 @@ namespace DapperFantom.Controllers
         }
 
 
-        public IActionResult Detail(int id)
+        [Route("/View/{guid}")]
+        public IActionResult Detail(string guid)
         {
-            Article article = articleService.GetById(id);
+            //Article article = articleService.GetById(id);
+            Article article = articleService.GetByGuid(guid);
             GeneralViewModel model = new GeneralViewModel
             {
                 Article = article
