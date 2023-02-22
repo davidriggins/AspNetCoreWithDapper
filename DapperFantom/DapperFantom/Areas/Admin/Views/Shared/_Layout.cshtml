@@ -1,4 +1,8 @@
-﻿<!doctype html>
+﻿@{
+    var controller = ViewContext.RouteData.Values["Controller"];
+}
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -24,11 +28,20 @@
 
 <body>
 
-    <partial name="_header" />
+    <div class="container">
+        <div class="row">
+            @if (controller.ToString() != "Login")
+            {
+                <partial name="_header" />
+            }
+            
+            @RenderBody()
 
-    @RenderBody()
+            <partial name="_footer" />
+        </div>
+    </div>
 
-    <partial name="_footer" />
+    
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
