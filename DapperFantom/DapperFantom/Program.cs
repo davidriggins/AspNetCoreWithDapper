@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<CityService>();
 builder.Services.AddScoped<ArticleService>();
+builder.Services.AddScoped<AdminService>();
 
 var app = builder.Build();
 
