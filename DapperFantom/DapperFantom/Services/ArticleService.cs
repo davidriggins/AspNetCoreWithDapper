@@ -65,5 +65,20 @@ namespace DapperFantom.Services
             return article;
         }
 
+        public List<Article> GetAll()
+        {
+            List<Article> articles = new List<Article>();
+
+            try
+            {
+                articles = connection.Query<Article>(@"select * from Articles").ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return articles;
+        }
     }
 }
