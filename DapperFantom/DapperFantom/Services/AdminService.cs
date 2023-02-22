@@ -67,8 +67,26 @@ namespace DapperFantom.Services
             Admin myAdmin = new Admin();
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
-            myAdmin = connection.Query<Admin>("select * from Admins where id=@id", parameters).FirstOrDefault();
+            myAdmin = connection.Query<Admin>("select * from Admins where AdminId=@id", parameters).FirstOrDefault();
             return myAdmin;
+        }
+
+        public Admin Update(Admin admin)
+        {
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", admin.AdminId);
+                parameters.Add("@username", admin.Username);
+                parameters.Add("@password", admin.Password);
+
+                connection.Execute("update Admins set Username=@username, Password=@password where AdminId=@id", parameters);
+                return admin;
+            }
+            catch (Exception)
+            {
+                return new Admin();
+            }
         }
     }
 }

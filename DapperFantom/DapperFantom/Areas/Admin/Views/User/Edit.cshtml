@@ -1,0 +1,47 @@
+﻿@model DapperFantom.Entities.Admin
+
+<div class="container">
+    <div class="col-12">
+        @if (ViewBag.Error != null && ViewBag.Error != "")
+        {
+            <div class="alert">
+                <div class="alert-danger">
+                    @ViewBag.Error
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <form method="post">
+                <input type="hidden" asp-for="@Model.AdminId" value="@Model.AdminId" />
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td><label asp-for="@Model.Username"></label>"</td>
+                        <td>
+                            <input type="text" name="Username" asp-for="@Model.Username" class="form-control" value="@Model.Username" />
+                            <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="@Model.Password"></label>"</td>
+                        <td>
+                            <input type="password" name="Password" asp-for="@Model.Password" class="form-control" value="@Model.Password" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+    </div>
+</div>

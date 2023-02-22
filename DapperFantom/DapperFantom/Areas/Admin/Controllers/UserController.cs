@@ -59,5 +59,20 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return View(admin);
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Entities.Admin admin)
+        {
+            Entities.Admin result = adminService.Update(admin);
+            if (result == null)
+            {
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(admin);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
