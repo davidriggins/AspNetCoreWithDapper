@@ -32,13 +32,23 @@ namespace DapperFantom.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Add() 
         { 
-            return View();
+            Entities.Admin admin = new Entities.Admin();
+            return View(admin);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Add(Entities.Admin admin)
         {
-            return View();
+            int result = adminService.Add(admin);
+            if (result == 0)
+            {
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(admin);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
     }
 }

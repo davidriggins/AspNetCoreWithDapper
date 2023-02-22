@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using System.Data;
 
@@ -51,6 +52,13 @@ namespace DapperFantom.Services
             }
 
             return userList;
+        }
+
+
+        public int Add(Admin admin)
+        {
+            long result = connection.Insert(admin);
+            return Convert.ToInt32(result);
         }
     }
 }
