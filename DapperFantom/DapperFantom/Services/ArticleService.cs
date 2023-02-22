@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using System.Data;
 
@@ -26,6 +27,22 @@ namespace DapperFantom.Services
             {
                 return 0;
             }
+        }
+
+        public Article GetById(int id)
+        {
+            Article article = new();
+
+            try
+            {
+                article = connection.Query<Article>(@"select * from Articles where ArticleId = " + id).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return article;
         }
     }
 }

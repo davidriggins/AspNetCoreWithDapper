@@ -45,6 +45,7 @@ namespace DapperFantom.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Save(Article model, IFormFile file) 
         {
             if (ModelState.IsValid)
@@ -68,7 +69,9 @@ namespace DapperFantom.Controllers
                 int result = articleService.Add(model);
                 if (result > 0)
                 {
-                    return RedirectToAction("Add");
+                    Article article = articleService.GetById(result);
+
+                    return RedirectToAction("Detail", new { id = article.ArticleId });
                 }
                 else
                 {
@@ -85,6 +88,14 @@ namespace DapperFantom.Controllers
             }
 
             return View();
+        }
+
+
+        public IActionResult Detail(int id)
+        {
+            Article article = articleService.GetById(id);
+
+            return View(article);
         }
     }
 }
