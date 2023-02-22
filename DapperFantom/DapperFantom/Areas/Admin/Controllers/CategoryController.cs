@@ -27,5 +27,28 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return View(model);
         }
+
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            Entities.Category category = new Entities.Category();
+            return View(category);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Add(Entities.Category category)
+        {
+            int result = categoryService.Add(category);
+            if (result == 0)
+            {
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(category);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

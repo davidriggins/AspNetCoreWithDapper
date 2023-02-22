@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using System.Data;
 using System.Data.SqlClient;
@@ -51,6 +52,12 @@ namespace DapperFantom.Services
             }
 
             return categories;
+        }
+
+        public int Add(Category category)
+        {
+            long result = connection.Insert(category);
+            return Convert.ToInt32(result);
         }
 
     }
