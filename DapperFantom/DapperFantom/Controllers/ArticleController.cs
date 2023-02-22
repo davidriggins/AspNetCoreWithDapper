@@ -12,12 +12,14 @@ namespace DapperFantom.Controllers
         private CategoryService categoryService;
         private CityService cityService;
         private IWebHostEnvironment hosting;
+        private ArticleService articleService;
 
         public ArticleController(IServiceProvider serviceProvider)
         {
             categoryService = serviceProvider.GetRequiredService<CategoryService>();
             cityService = serviceProvider.GetRequiredService<CityService>();
             hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
+            articleService = serviceProvider.GetRequiredService<ArticleService>();
         }
 
         public IActionResult Index()
@@ -62,6 +64,18 @@ namespace DapperFantom.Controllers
                         model.Image = fileName;
                     }
                 }
+
+                int result = articleService.Add(model);
+                if (result > 0)
+                {
+                    return RedirectToAction("Add");
+                }
+                else
+                {
+                    string message = "Something went wrong, please check it.";
+                    return View(message);
+                }
+
             }
             else
             {

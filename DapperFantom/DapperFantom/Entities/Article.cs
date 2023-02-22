@@ -7,7 +7,7 @@ namespace DapperFantom.Entities
     {
         [Dapper.Contrib.Extensions.Key]
         public int ArticleId { get; set; }
-        public string Guid { get; set; }
+        public string? Guid { get; set; }
 
         [Required(ErrorMessage = "Please select a Category")]
         public int CategoryId { get; set; }
@@ -17,7 +17,7 @@ namespace DapperFantom.Entities
 
         [Required(ErrorMessage = "Please enter a Title")]
         public string Title { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         [Required(ErrorMessage = "Please select a City")]
         public int CityId { get; set; }
