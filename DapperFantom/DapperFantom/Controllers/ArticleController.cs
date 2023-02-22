@@ -91,11 +91,11 @@ namespace DapperFantom.Controllers
         }
 
 
-        [Route("/View/{guid}")]
-        public IActionResult Detail(string guid)
+        //[Route("/View/{guid}")]
+        public IActionResult Detail(string id)
         {
             //Article article = articleService.GetById(id);
-            Article article = articleService.GetByGuid(guid);
+            Article article = articleService.GetByGuid(id);
             GeneralViewModel model = new GeneralViewModel
             {
                 Article = article
