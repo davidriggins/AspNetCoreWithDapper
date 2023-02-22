@@ -4,6 +4,7 @@ namespace DapperFantom.Entities
 {
     public class Category
     {
+        [Dapper.Contrib.Extensions.Key]
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Please enter your category")]

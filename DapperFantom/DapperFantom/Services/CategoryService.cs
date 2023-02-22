@@ -22,7 +22,7 @@ namespace DapperFantom.Services
         public List<Category> GetAllAdoNet()
         {
             List<Category> categories = new List<Category>();
-            SqlCommand command = new SqlCommand("select * from Categories", adoNetConnection);
+            SqlCommand command = new SqlCommand("select * from Categorys", adoNetConnection);
             command.CommandType = CommandType.Text;
             IDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
             while (dataReader.Read())
@@ -44,7 +44,7 @@ namespace DapperFantom.Services
             List<Category> categories = new List<Category>();
             try
             {
-                categories = connection.Query<Category>(@"select * from Categories").ToList();
+                categories = connection.Query<Category>(@"select * from Categorys").ToList();
             }
             catch (Exception ex)
             {
