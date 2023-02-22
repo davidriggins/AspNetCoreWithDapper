@@ -1,1 +1,37 @@
-﻿@
+﻿@model DapperFantom.Entities.Admin
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <form method="post">
+                <table class="table table-bordered">
+                    <tr>
+                        <td><label asp-for="@Model.Username"></label>"</td>
+                        <td>
+                            <input type="text" name="Username" asp-for="@Model.Username" class="form-control" />
+                            <span asp-validation-for="@Model.Username" class="text-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label asp-for="@Model.Password"></label>"</td>
+                        <td>
+                            <input type="password" name="Password" asp-for="@Model.Password" class="form-control" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+    </div>
+</div>
