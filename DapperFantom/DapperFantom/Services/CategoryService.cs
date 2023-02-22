@@ -8,20 +8,20 @@ namespace DapperFantom.Services
     public class CategoryService
     {
         private SqlConnection adoNetConnection;
-        private IDbConnection dapperConnection;
+        private IDbConnection connection;
         private ConnectionService connectionService;
 
         public CategoryService(IConfiguration configuration)
         {
             connectionService= new ConnectionService(configuration);
             adoNetConnection = connectionService.DbConnection();
-            dapperConnection = connectionService.ForDapper();
+            connection = connectionService.ForDapper();
         }
 
         public List<Category> GetAllAdoNet()
         {
             List<Category> categories = new List<Category>();
-            SqlCommand command = new SqlCommand("select * from Category", adoNetConnection);
+            SqlCommand command = new SqlCommand("select * from Categories", adoNetConnection);
             command.CommandType = CommandType.Text;
             IDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
             while (dataReader.Read())
@@ -43,7 +43,7 @@ namespace DapperFantom.Services
             List<Category> categories = new List<Category>();
             try
             {
-                categories = dapperConnection.Query<Category>(@"select * from Category").ToList();
+                categories = connection.Query<Category>(@"select * from Categories").ToList();
             }
             catch (Exception ex)
             {
