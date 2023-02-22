@@ -1,9 +1,12 @@
-﻿using DapperFantom.Models;
+﻿using DapperFantom.Areas.Admin.Models;
+using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DapperFantom.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [AdminAuth]
     public class UserController : Controller
     {
         private AdminService adminService;
@@ -23,6 +26,19 @@ namespace DapperFantom.Areas.Admin.Controllers
             };
 
             return View(model);
+        }
+
+
+        [HttpGet]
+        public IActionResult Add() 
+        { 
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Add(Entities.Admin admin)
+        {
+            return View();
         }
     }
 }
