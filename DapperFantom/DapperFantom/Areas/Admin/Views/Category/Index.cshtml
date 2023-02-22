@@ -8,6 +8,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Category Name</th>
+                        <th>Slug</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -18,6 +19,7 @@
                         <tr id="user@(category.CategoryId)">
                             <td>@category.CategoryId</td>
                             <td>@category.CategoryName</td>
+                            <td>@category.Slug</td>
                             <td>
                                 <div class="button-group-area">
                                     <a asp-action="Edit" asp-controller="Category" asp-route-id="@category.CategoryId" class="btn btn-info">Edit</a>

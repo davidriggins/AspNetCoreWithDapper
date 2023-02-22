@@ -56,8 +56,18 @@ namespace DapperFantom.Services
 
         public int Add(Category category)
         {
-            long result = connection.Insert(category);
-            return Convert.ToInt32(result);
+            //long result = connection.Insert(category);
+
+            try
+            {
+                long result = connection.Insert(category);
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+
         }
 
     }

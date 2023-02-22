@@ -1,0 +1,46 @@
+﻿@model DapperFantom.Entities.Category
+
+<div class="container">
+    <div class="col-12">
+        @if (ViewBag.Error != null && ViewBag.Error != "")
+        {
+            <div class="alert">
+                <div class="alert-danger">
+                    @ViewBag.Error
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <form method="post">
+                <table class="table table-bordered">
+                    <tr>
+                        <td><label asp-for="@Model.CategoryName"></label>"</td>
+                        <td>
+                            <input type="text" name="CategoryName" asp-for="@Model.CategoryName" class="form-control" />
+                            <span asp-validation-for="@Model.CategoryName" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Slug"></label>"</td>
+                        <td>
+                            <input type="text" name="Slug" asp-for="@Model.Slug" class="form-control" />
+                            <span asp-validation-for="@Model.Slug" class="text-danger"></span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="submit" value="Save" class="btn btn-success" />
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+    </div>
+</div>
