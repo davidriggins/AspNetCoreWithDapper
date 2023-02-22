@@ -50,5 +50,14 @@ namespace DapperFantom.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Entities.Admin admin = adminService.Get(id);
+
+            return View(admin);
+        }
     }
 }

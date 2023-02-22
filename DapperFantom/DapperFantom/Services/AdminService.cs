@@ -60,5 +60,15 @@ namespace DapperFantom.Services
             long result = connection.Insert(admin);
             return Convert.ToInt32(result);
         }
+
+
+        public Admin Get(int id)
+        {
+            Admin myAdmin = new Admin();
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            myAdmin = connection.Query<Admin>("select * from Admins where id=@id", parameters).FirstOrDefault();
+            return myAdmin;
+        }
     }
 }
