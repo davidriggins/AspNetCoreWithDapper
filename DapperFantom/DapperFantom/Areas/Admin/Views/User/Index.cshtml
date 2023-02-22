@@ -1,0 +1,44 @@
+﻿@model UserViewModel
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var user in Model.UserList)
+                    {
+                        <tr id="user@(user.AdminId)">
+                            <td>@user.AdminId</td>
+                            <td>@user.Username</td>
+                            <td>@user.Password</td>
+                            <td>
+                                <div class="button-group-area">
+                                    <a asp-action="Edit" asp-controller="User" class="btn btn-info">Edit</a>
+                                    <a asp-action="Delete" asp-controller="User" class="btn btn-info">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td>
+                            <td colspan="4">
+                                <a asp-action="Add" class="btn btn-success">Add User</a>
+                            </td>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

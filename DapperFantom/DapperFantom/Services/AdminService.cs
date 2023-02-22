@@ -35,5 +35,22 @@ namespace DapperFantom.Services
 
             return myAdmin;
         }
+
+
+        public List<Admin> GetAll()
+        {
+            List<Admin> userList = new List<Admin>();
+
+            try
+            {
+                userList = connection.Query<Admin>("select * from Admins").ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return userList;
+        }
     }
 }
