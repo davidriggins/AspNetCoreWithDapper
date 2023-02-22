@@ -4,10 +4,15 @@
 <div class="container">
     <div class="row">
         <form method="post">
+
+            <label asp-for="@Model.Username"></label>
             <input type="text" asp-for="@Model.Username" required />
+            <span asp-validation-for="@Model.Username" class="text-danger"></span>
             <hr />
 
+            <label asp-for="@Model.Password"></label>
             <input type="password" asp-for="@Model.Password" required />
+            <span asp-validation-for="@Model.Password" class="text-danger"></span>
             <hr />
 
             <button type="submit" class="btn btn-success">Login</button>
