@@ -94,8 +94,12 @@ namespace DapperFantom.Controllers
         public IActionResult Detail(int id)
         {
             Article article = articleService.GetById(id);
+            GeneralViewModel model = new GeneralViewModel
+            {
+                Article = article
+            };
 
-            return View(article);
+            return View(model);
         }
     }
 }
