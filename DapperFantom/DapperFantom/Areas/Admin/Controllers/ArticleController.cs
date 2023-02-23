@@ -59,6 +59,25 @@ namespace DapperFantom.Areas.Admin.Controllers
         }
 
 
+        public IActionResult Edit(int id)
+        {
+            Article article = articleService.GetById(id);
+            List<Category> categories = categoryService.GetAll();
+            List<City> cities = cityService.GetAll();
+
+            var model = new UserViewModel
+            {
+                Article = article,
+                CategoryList = categories,
+                CityList = cities
+            };
+
+
+            return View(model);
+        }
+
+
+
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(int id, UserViewModel model)
         {
