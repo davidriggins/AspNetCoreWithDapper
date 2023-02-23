@@ -27,10 +27,10 @@
                         <td>Slider Post</td>
                         <td style="font-size:20px">
                             <label>
-                                <input type="radio" value="0" asp-for="@Model.Article.Slider" />Pending
+                                <input type="radio" value="0" asp-for="@Model.Article.Slider" />No
                             </label>
                             <label>
-                                <input type="radio" value="1" asp-for="@Model.Article.Slider" />Published
+                                <input type="radio" value="1" asp-for="@Model.Article.Slider" />Yes
                             </label>
                         </td>
                     </tr>
@@ -41,8 +41,86 @@
                             <select class="form-control" asp-items="@(new SelectList(Model.CategoryList,"CategoryId","CategoryName"))" asp-for="@Model.Article.CategoryId"></select>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>Title</td>
+                        <td>
+                            <input type="text" asp-for="@Model.Article.Title" class="form-control" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Name Surname</td>
+                        <td>
+                            @Model.Article.NameSurname
+                        </td>
+                    </tr>
+
+                    @if(Model.Article.Image != "" && Model.Article.Image != null)
+                    {
+                        <tr>
+                            <td><label asp-for="@Model.Article.Image"></label></td>
+                            <td><a href="~/upload/@Model.Article.Image" target="_blank">Display</a></td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td width="25%">City</td>
+                        <td>
+                            <select class="form-control" asp-items="@(new SelectList(Model.CityList,"CityId","CityName"))" asp-for="@Model.Article.CityId"></select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Article.Content"></label></td>
+                        <td>@Model.Article.Content</td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Article.EMail"></label></td>
+                        <td>@Model.Article.EMail</td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Article.Phone"></label></td>
+                        <td>@Model.Article.Phone</td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Article.PublishingDate"></label></td>
+                        <td>@Model.Article.PublishingDate</td>
+                    </tr>
+
+                    <tr>
+                        <td><label asp-for="@Model.Article.CreatedDate"></label></td>
+                        <td>@Model.Article.CreatedDate</td>
+                    </tr>
+
+                    <tr>
+                        <td>Post Viewed?</td>
+                        <td>@(Model.Article.Seen == 0 ? "You are the first to view this post" : "This post has been viewed")</td>
+                    </tr>
+
+                    <tr>
+                        <td>Home View</td>
+                        <td style="font-size:20px">
+                            <label>
+                                <input type="radio" value="0" asp-for="@Model.Article.HomeView" />No
+                            </label>
+                            <label>
+                                <input type="radio" value="1" asp-for="@Model.Article.HomeView" />Yes
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Comment Count</td>
+                        <td>This post has @(Model.Article.CommentCount) comments</td>
+                    </tr>
+
                 </table>
 
+                <input type="submit" class="btn btn-primary" value="Edit" />
             </form>
         </div>
     </div>

@@ -59,21 +59,21 @@ namespace DapperFantom.Areas.Admin.Controllers
         }
 
 
-        public IActionResult Edit(int id)
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, UserViewModel model)
         {
-            Article article = articleService.GetById(id);
-            List<Category> categories = categoryService.GetAll();
-            List<City> cities= cityService.GetAll();
-
-            var model = new UserViewModel
+            Article article = model.Article;
+            Article result = articleService.Update(article);
+            if (result == null)
             {
-                Article = article,
-                CategoryList = categories,
-                CityList = cities
-            };
+                ViewBag.Error = "Something went wrong, please try again.";
+                return View(article);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
 
-
-            return View(model);
         }
     }
 }
