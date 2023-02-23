@@ -76,108 +76,28 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="blog_left_sidebar">
-                    <article class="blog_style1">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="img/home-blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                </div>
+
+                    @foreach (var item in Model.ArticleList)
+                    {
+                        <article class="blog_style1">
+                            <div class="blog_img">
+                                <img class="img-fluid" src="~/upload/@(item.Image)" alt="">
                             </div>
-                        </div>
-                    </article>
-                    <article class="blog_style1">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="img/home-blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <article class="blog_style1 small">
-                                <div class="blog_img">
-                                    <img class="img-fluid" src="img/home-blog/blog-small-1.jpg" alt="">
-                                </div>
-                                <div class="blog_text">
-                                    <div class="blog_text_inner">
-                                        <a class="cat" href="#">Gadgets</a>
-                                        <a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                        <div class="date">
-                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                        </div>
+                            <div class="blog_text">
+                                <div class="blog_text_inner">
+                                    <a class="cat" href="#">Gadgets</a>
+                                    <a href="single-blog.html"><h4>@(item.Title)</h4></a>
+                                    <p>@(item.Content)</p>
+                                    <div class="date">
+                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @(item.PublishingDate)</a>
+                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @(item.CommentCount)</a>
                                     </div>
                                 </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6">
-                            <article class="blog_style1 small">
-                                <div class="blog_img">
-                                    <img class="img-fluid" src="img/home-blog/blog-small-2.jpg" alt="">
-                                </div>
-                                <div class="blog_text">
-                                    <div class="blog_text_inner">
-                                        <a class="cat" href="#">Gadgets</a>
-                                        <a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                                        <div class="date">
-                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    <article class="blog_style1">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="img/home-blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                </div>
                             </div>
-                        </div>
-                    </article>
-                    <article class="blog_style1">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="img/home-blog/blog-4.jpg" alt="">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                        </article>
+                    }
+
+
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
                             <li class="page-item">
@@ -276,7 +196,7 @@
                                     </a>
                                 </li>
                             }
-                            
+
                         </ul>
                         <div class="br"></div>
                     </aside>

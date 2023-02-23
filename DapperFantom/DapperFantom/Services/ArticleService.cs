@@ -139,12 +139,29 @@ namespace DapperFantom.Services
 
                     return article;
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
                     return new Article();
                 }
             }
+        }
+
+
+        public List<Article> GetHome()
+        {
+            List<Article> articles = new List<Article>();
+
+            try
+            {
+                articles = connection.Query<Article>("select * from Articles where HomeView=1 and Status=1 or Slider=1").ToList();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return articles;
         }
     }
 }
