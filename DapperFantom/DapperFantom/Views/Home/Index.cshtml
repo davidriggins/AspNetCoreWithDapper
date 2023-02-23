@@ -13,7 +13,7 @@
                     </div>
                     <div class="post_text">
                         <a class="cat" href="#">Gadgets</a>
-                        <a href="single-blog.html"><h4>@item.Title</h4></a>
+                        <a asp-controller="Article" asp-action="Detail" asp-route-id="@item.Guid"><h4>@item.Title</h4></a>
 
                         @if (item.Content.Length > 20)
                         {
@@ -53,7 +53,7 @@
                             <div class="blog_text">
                                 <div class="blog_text_inner">
                                     <a class="cat" href="#">Gadgets</a>
-                                    <a href="single-blog.html"><h4>@(item.Title)</h4></a>
+                                    <a asp-controller="Article" asp-action="Detail" asp-route-id="@item.Guid"><h4>@(item.Title)</h4></a>
                                     @if (item.Content.Length > 175)
                                     {
                                         <p>@(item.Content.Substring(0, 175))</p>
