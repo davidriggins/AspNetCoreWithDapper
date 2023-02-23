@@ -77,7 +77,7 @@
             <div class="col-lg-8">
                 <div class="blog_left_sidebar">
 
-                    @foreach (var item in Model.ArticleList)
+                    @foreach (var item in Model.ArticleList.Where(w=>w.Slider==0))
                     {
                         <article class="blog_style1">
                             <div class="blog_img">
@@ -87,9 +87,17 @@
                                 <div class="blog_text_inner">
                                     <a class="cat" href="#">Gadgets</a>
                                     <a href="single-blog.html"><h4>@(item.Title)</h4></a>
-                                    <p>@(item.Content)</p>
+                                    @if (item.Content.Length > 175)
+                                    {
+                                        <p>@(item.Content.Substring(0, 175))</p>
+                                    }
+                                    else
+                                    {
+                                        <p>@(item.Content)</p>
+                                    }
+                                    
                                     <div class="date">
-                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @(item.PublishingDate)</a>
+                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @(item.PublishingDate.ToShortDateString())</a>
                                         <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @(item.CommentCount)</a>
                                     </div>
                                 </div>
