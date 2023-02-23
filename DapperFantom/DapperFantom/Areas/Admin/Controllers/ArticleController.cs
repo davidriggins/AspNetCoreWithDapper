@@ -11,10 +11,14 @@ namespace DapperFantom.Areas.Admin.Controllers
     public class ArticleController : Controller
     {
         private ArticleService articleService;
+        private CategoryService categoryService;
+        private CityService cityService;
 
         public ArticleController(IServiceProvider serviceProvider)
         {
             articleService = serviceProvider.GetRequiredService<ArticleService>();
+            categoryService = serviceProvider.GetRequiredService<CategoryService>();
+            cityService = serviceProvider.GetRequiredService<CityService>();
         }
 
 
@@ -52,6 +56,24 @@ namespace DapperFantom.Areas.Admin.Controllers
                 ViewBag.Error = "Something went wrong, please try again.";
                 return View(article);
             }
+        }
+
+
+        public IActionResult Edit(int id)
+        {
+            Article article = articleService.GetById(id);
+            List<Category> categories = categoryService.GetAll();
+            List<City> cities= cityService.GetAll();
+
+            var model = new UserViewModel
+            {
+                Article = article,
+                CategoryList = categories,
+                CityList = cities
+            };
+
+
+            return View(model);
         }
     }
 }
