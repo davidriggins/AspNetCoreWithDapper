@@ -38,6 +38,6 @@ namespace DapperFantom.Entities
         public int Hit { get; set; }
         public int CommentCount { get; set; }
         public int Slider { get; set; }
-
+        public Category Category { get; set; }
     }
 }

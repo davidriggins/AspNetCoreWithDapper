@@ -154,7 +154,17 @@ namespace DapperFantom.Services
 
             try
             {
-                articles = connection.Query<Article>("select * from Articles where HomeView=1 and Status=1 or Slider=1").ToList();
+                //articles = connection.Query<Article>("select * from Articles where HomeView=1 and Status=1 or Slider=1").ToList();
+                string sql = @"select * from Articles
+                                    inner join Categorys as cat on cat.CategoryId = Articles.CategoryId
+                               where HomeView=1 and Status=1 or Slider=1";
+
+                articles = connection.Query<Article,Category,Article>(sql, (article, category) =>
+                {
+                    article.Category = category;
+                    return article;
+                }, splitOn:"CategoryId").ToList();
+
             }
             catch (Exception)
             {
