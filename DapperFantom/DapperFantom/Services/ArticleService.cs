@@ -159,11 +159,11 @@ namespace DapperFantom.Services
                                     inner join Categorys as cat on cat.CategoryId = Articles.CategoryId
                                where HomeView=1 and Status=1 or Slider=1";
 
-                articles = connection.Query<Article,Category,Article>(sql, (article, category) =>
+                articles = connection.Query<Article, Category, Article>(sql, (article, category) =>
                 {
                     article.Category = category;
                     return article;
-                }, splitOn:"CategoryId").ToList();
+                }, splitOn: "CategoryId").ToList();
 
             }
             catch (Exception)
@@ -174,7 +174,7 @@ namespace DapperFantom.Services
             return articles;
         }
 
-        
+
         public List<Article> GetByCategoryId(int id)
         {
             List<Article> articles = new List<Article>();
@@ -195,6 +195,31 @@ namespace DapperFantom.Services
             }
 
             return articles;
+        }
+
+
+        public Article GetPrev(int id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@id", id);
+
+            string sql = @"select ArticleId,Guid,Title,Image from Articles 
+                          where ArticleId<@id order by ArticleId desc 
+                          OFFSET 0 ROWS
+                          FETCH NEXT 1 ROWS ONLY";
+
+            return connection.Query<Article>(sql, parameter).FirstOrDefault();
+        }
+
+        public Article GetNext(int id)
+        {
+            var parameter = new DynamicParameters();
+            parameter.Add("@id", id);
+
+            string sql = @"select top 1 ArticleId,Guid,Title,Image from Articles 
+                          where ArticleId>@id order by ArticleId asc";
+
+            return connection.Query<Article>(sql, parameter).FirstOrDefault();
         }
     }
 }

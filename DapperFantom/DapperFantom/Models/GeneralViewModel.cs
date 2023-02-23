@@ -18,5 +18,7 @@ namespace DapperFantom.Models
         public List<Category> CategoryList { get; set; }
         public List<Article> ArticleList { get; set; }
         public List<City> CityList { get; set; }
+        public Article PrevArticle { get; set; }
+        public Article NextArticle { get; set; }
     }
 }

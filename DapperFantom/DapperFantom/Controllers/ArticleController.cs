@@ -96,9 +96,14 @@ namespace DapperFantom.Controllers
         {
             //Article article = articleService.GetById(id);
             Article article = articleService.GetByGuid(id);
+            Article prevArt = articleService.GetPrev(article.ArticleId);
+            Article nextArt = articleService.GetNext(article.ArticleId);
+
             GeneralViewModel model = new GeneralViewModel
             {
-                Article = article
+                Article = article,
+                PrevArticle = prevArt, 
+                NextArticle = nextArt
             };
 
             return View(model);
