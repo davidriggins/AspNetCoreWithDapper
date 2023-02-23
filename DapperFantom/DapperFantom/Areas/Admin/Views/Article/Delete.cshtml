@@ -1,0 +1,38 @@
+﻿@model DapperFantom.Entities.Article
+
+<div class="container">
+    <div class="col-12">
+        @if (ViewBag.Error != null && ViewBag.Error != "")
+        {
+            <div class="alert">
+                <div class="alert-danger">
+                    @ViewBag.Error
+                </div>
+            </div>
+        }
+
+        <div class="row">
+            <form method="post">
+
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            <b>Are you sure you want to delete @Model.Title</b>
+                        </td>
+                    </tr>
+                    <tr>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <button asp-action="Delete" type="submit" class="btn btn-danger">Yes</button>
+                            <a asp-action="Index" class="btn btn-info">No</a>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+
+        </div>
+    </div>
+</div>

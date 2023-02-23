@@ -80,5 +80,20 @@ namespace DapperFantom.Services
 
             return articles;
         }
+
+
+        public bool Delete(Article article)
+        {
+            try
+            {
+                bool result = connection.Delete(article);
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
     }
 }
