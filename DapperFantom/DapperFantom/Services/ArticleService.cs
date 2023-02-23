@@ -173,5 +173,28 @@ namespace DapperFantom.Services
 
             return articles;
         }
+
+        
+        public List<Article> GetCategory(int id)
+        {
+            List<Article> articles = new List<Article>();
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@id", id);
+
+                string sql = @"select * from Articles where Status=1 and CategoryId = @id";
+
+                articles = connection.Query<Article>(sql, parameters).ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return articles;
+        }
     }
 }

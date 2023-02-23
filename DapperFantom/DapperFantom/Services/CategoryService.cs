@@ -3,6 +3,7 @@ using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.X509Certificates;
 
 namespace DapperFantom.Services
 {
@@ -38,6 +39,18 @@ namespace DapperFantom.Services
 
             return categories;
         }
+
+
+        public Category GetBySlug(string slug)
+        {
+            Category category = new Category();
+            var parameters = new DynamicParameters();
+            parameters.Add("@slug", slug);
+
+            category = connection.Query<Category>("select * from Categorys whre Slug=@slug", parameters).FirstOrDefault();
+            return category;
+        }
+
 
         public List<Category> GetAll()
         {

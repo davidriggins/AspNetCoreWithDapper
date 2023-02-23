@@ -22,7 +22,7 @@ namespace DapperFantom.Controllers
         {
             if (slug != null)
             {
-                Category category = categoryService.GetSlug(slug);
+                Category category = categoryService.GetBySlug(slug);
                 if (category != null)
                 {
                     List<Category> categories = categoryService.GetAll();
