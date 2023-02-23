@@ -37,9 +37,9 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-controller="Article" asp-action="Index">Article List</a></li>
-                            <li><a class="dropdown-item" href="#">Pending Articles</a></li>
-                            <li><a class="dropdown-item" href="#">Approved Articles</a></li>
-                            <li><a class="dropdown-item" href="#">Rejected Articles</a></li>
+                            <li><a class="dropdown-item" asp-controller="Article" asp-action="Status" asp-route-id="0">Pending Articles</a></li>
+                            <li><a class="dropdown-item" asp-controller="Article" asp-action="Status" asp-route-id="1">Approved Articles</a></li>
+                            <li><a class="dropdown-item" asp-controller="Article" asp-action="Status" asp-route-id="2">Rejected Articles</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

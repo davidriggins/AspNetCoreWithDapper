@@ -16,6 +16,26 @@ namespace DapperFantom.Services
             connection = connectionService.ForDapper();
         }
 
+
+        public List<Article> GetStatus(int status)
+        {
+            List<Article> articles = new List<Article>();
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                parameters.Add("@status", status);
+                articles = connection.Query<Article>(@"select * from Articles where Status=@status", parameters).ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return articles;
+        }
+
         public int Add(Article article)
         {
             var result = connection.Insert(article);

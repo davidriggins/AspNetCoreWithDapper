@@ -94,5 +94,23 @@ namespace DapperFantom.Areas.Admin.Controllers
             }
 
         }
+
+
+        public IActionResult Status(int id)
+        {
+            List<Article> articleList = articleService.GetStatus(id);
+            ViewBag.Title = "Pending Articles";
+
+            if (id==1)
+            {
+                ViewBag.Title = "Confirmed Articles";
+            }
+            else if (id==2)
+            {
+                ViewBag.Title = "Rejected Articles";
+            }
+
+            return View(articleList);
+        }
     }
 }
