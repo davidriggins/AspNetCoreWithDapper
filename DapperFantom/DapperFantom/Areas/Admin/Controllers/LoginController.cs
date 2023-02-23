@@ -55,5 +55,19 @@ namespace DapperFantom.Areas.Admin.Controllers
             }
 
         }
+
+
+        public IActionResult Logout()
+        {
+            if (HttpContext.Request.Cookies.Count > 0)
+            {
+                foreach (var item in HttpContext.Request.Cookies.Keys) 
+                { 
+                    Response.Cookies.Delete(item);
+                }
+            }
+
+            return Redirect("/");
+        }
     }
 }
