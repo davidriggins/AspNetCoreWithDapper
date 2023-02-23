@@ -13,10 +13,10 @@ namespace DapperFantom.Services
             _configuration = configuration;
             string connectionString = _configuration.GetConnectionString("DefaultConnection").ToString();
             myconnection = new SqlConnection(connectionString);
-            if (myconnection.State != ConnectionState.Open)
-            {
-                myconnection.Open();
-            }
+            //if (myconnection.State != ConnectionState.Open)
+            //{
+            //    myconnection.Open();
+            //}
         }
 
         internal SqlConnection DbConnection()
@@ -27,11 +27,11 @@ namespace DapperFantom.Services
         internal SqlConnection ForDapper()
         {
             var connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection").ToString());
-            var state = connection.State;
-            if (state != ConnectionState.Open)
-            {
-                connection.Open();
-            }
+            //var state = connection.State;
+            //if (state != ConnectionState.Open)
+            //{
+            //    connection.Open();
+            //}
 
             return connection;
         }
