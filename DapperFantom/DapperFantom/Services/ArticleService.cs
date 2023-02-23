@@ -175,7 +175,7 @@ namespace DapperFantom.Services
         }
 
         
-        public List<Article> GetCategory(int id)
+        public List<Article> GetByCategoryId(int id)
         {
             List<Article> articles = new List<Article>();
 

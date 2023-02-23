@@ -47,7 +47,7 @@ namespace DapperFantom.Services
             var parameters = new DynamicParameters();
             parameters.Add("@slug", slug);
 
-            category = connection.Query<Category>("select * from Categorys whre Slug=@slug", parameters).FirstOrDefault();
+            category = connection.Query<Category>("select * from Categorys where Slug=@slug", parameters).FirstOrDefault();
             return category;
         }
 

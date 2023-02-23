@@ -18,6 +18,7 @@ namespace DapperFantom.Controllers
         }
 
 
+        [Route("/Category/{slug}/{page?}")]
         public IActionResult Index(string slug)
         {
             if (slug != null)
@@ -26,7 +27,7 @@ namespace DapperFantom.Controllers
                 if (category != null)
                 {
                     List<Category> categories = categoryService.GetAll();
-                    List<Article> articles = articleService.GetCategory(category.CategoryId);
+                    List<Article> articles = articleService.GetByCategoryId(category.CategoryId);
 
                     GeneralViewModel model = new GeneralViewModel
                     {
