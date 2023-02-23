@@ -1,4 +1,6 @@
-﻿using DapperFantom.Services;
+﻿using DapperFantom.Entities;
+using DapperFantom.Models;
+using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DapperFantom.Controllers
@@ -16,9 +18,34 @@ namespace DapperFantom.Controllers
         }
 
 
-        public IActionResult Index()
+        public IActionResult Index(string slug)
         {
-            return View();
+            if (slug != null)
+            {
+                Category category = categoryService.GetSlug(slug);
+                if (category != null)
+                {
+                    List<Category> categories = categoryService.GetAll();
+                    List<Article> articles = articleService.GetCategory(category.CategoryId);
+
+                    GeneralViewModel model = new GeneralViewModel
+                    {
+                        CategoryList = categories,
+                        ArticleList= articles,
+                        Category = category
+                    };
+
+                    return View(model);
+                }
+                else
+                {
+                    return Redirect("/");
+                }
+            }
+            else
+            {
+                return Redirect("/");
+            }
         }
     }
 }
