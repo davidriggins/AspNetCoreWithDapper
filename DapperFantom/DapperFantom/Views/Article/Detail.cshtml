@@ -22,7 +22,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="main_blog_details">
-                    <img class="img-fluid" src="/upload/@Model.Article.Image" alt="">
+                    <img class="img-fluid" src="~/upload/@Model.Article.Image" alt="">
                     <a href="#"><h4>@Model.Article.Title</h4></a>
                     <div class="user_details">
                         <div class="float-left">
@@ -36,7 +36,7 @@
                                     <p>12 Dec, 2017 11:21 am</p>
                                 </div>
                                 <div class="d-flex">
-                                    <img src="img/blog/user-img.jpg" alt="">
+                                    <img src="~/img/blog/user-img.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -57,28 +57,38 @@
                 <div class="navigation-area">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                            <div class="thumb">
-                                <a href="#"><img class="img-fluid" src="img/blog/prev.jpg" alt=""></a>
-                            </div>
-                            <div class="arrow">
-                                <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                            </div>
-                            <div class="detials">
-                                <p>Prev Post</p>
-                                <a href="#"><h4>Space The Final Frontier</h4></a>
-                            </div>
+
+                            @if (Model.PrevArticle != null)
+                            {
+                                var prevArticle = Model.PrevArticle;
+                                <div class="thumb">
+                                    <a asp-controller="Article" asp-action="Detail" asp-route-id="@prevArticle.Guid"><img class="img-fluid" src="~/upload/@prevArticle.Image" width="100" height="60" alt=""></a>
+                                </div>
+                                <div class="arrow">
+                                    <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+                                </div>
+                                <div class="detials">
+                                    <p>Prev Post</p>
+                                    <a asp-controller="Article" asp-action="Detail" asp-route-id="@prevArticle.Guid"><h4>@prevArticle.Title</h4></a>
+                                </div>
+                            }
+
                         </div>
                         <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                            <div class="detials">
-                                <p>Next Post</p>
-                                <a href="#"><h4>Telescopes 101</h4></a>
-                            </div>
-                            <div class="arrow">
-                                <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                            </div>
-                            <div class="thumb">
-                                <a href="#"><img class="img-fluid" src="img/blog/next.jpg" alt=""></a>
-                            </div>
+                            @if (Model.NextArticle != null)
+                            {
+                                var nextArticle = Model.NextArticle;
+                                <div class="thumb">
+                                    <a asp-controller="Article" asp-action="Detail" asp-route-id="@nextArticle.Guid"><img class="img-fluid" src="~/upload/@nextArticle.Image" width="100" height="60" alt=""></a>
+                                </div>
+                                <div class="arrow">
+                                    <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+                                </div>
+                                <div class="detials">
+                                    <p>Next Post</p>
+                                    <a asp-controller="Article" asp-action="Detail" asp-route-id="@nextArticle.Guid"><h4>@nextArticle.Title</h4></a>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -88,7 +98,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/blog/c1.jpg" alt="">
+                                    <img src="~/img/blog/c1.jpg" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Emilly Blunt</a></h5>
@@ -107,7 +117,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/blog/c2.jpg" alt="">
+                                    <img src="~/img/blog/c2.jpg" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Elsie Cunningham</a></h5>
@@ -126,7 +136,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/blog/c3.jpg" alt="">
+                                    <img src="~/img/blog/c3.jpg" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Annie Stephens</a></h5>
@@ -145,7 +155,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/blog/c4.jpg" alt="">
+                                    <img src="~/img/blog/c4.jpg" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Maria Luna</a></h5>
@@ -164,7 +174,7 @@
                         <div class="single-comment justify-content-between d-flex">
                             <div class="user justify-content-between d-flex">
                                 <div class="thumb">
-                                    <img src="img/blog/c5.jpg" alt="">
+                                    <img src="~/img/blog/c5.jpg" alt="">
                                 </div>
                                 <div class="desc">
                                     <h5><a href="#">Ina Hayes</a></h5>
@@ -213,7 +223,7 @@
                         <div class="br"></div>
                     </aside>
                     <aside class="single_sidebar_widget author_widget">
-                        <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+                        <img class="author_img rounded-circle" src="~/img/blog/author.png" alt="">
                         <h4>Charlie Barber</h4>
                         <p>Senior blog writer</p>
                         <div class="social_icon">
@@ -228,28 +238,28 @@
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Popular Posts</h3>
                         <div class="media post_item">
-                            <img src="img/blog/popular-post/post1.jpg" alt="post">
+                            <img src="~/img/blog/popular-post/post1.jpg" alt="post">
                             <div class="media-body">
                                 <a href="blog-details.html"><h3>Space The Final Frontier</h3></a>
                                 <p>02 Hours ago</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/blog/popular-post/post2.jpg" alt="post">
+                            <img src="~/img/blog/popular-post/post2.jpg" alt="post">
                             <div class="media-body">
                                 <a href="blog-details.html"><h3>The Amazing Hubble</h3></a>
                                 <p>02 Hours ago</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/blog/popular-post/post3.jpg" alt="post">
+                            <img src="~/img/blog/popular-post/post3.jpg" alt="post">
                             <div class="media-body">
                                 <a href="blog-details.html"><h3>Astronomy Or Astrology</h3></a>
                                 <p>03 Hours ago</p>
                             </div>
                         </div>
                         <div class="media post_item">
-                            <img src="img/blog/popular-post/post4.jpg" alt="post">
+                            <img src="~/img/blog/popular-post/post4.jpg" alt="post">
                             <div class="media-body">
                                 <a href="blog-details.html"><h3>Asteroids telescope</h3></a>
                                 <p>01 Hours ago</p>
@@ -258,7 +268,7 @@
                         <div class="br"></div>
                     </aside>
                     <aside class="single_sidebar_widget">
-                        <a href="#"><img class="img-fluid" src="img/blog/add.jpg" alt=""></a>
+                        <a href="#"><img class="img-fluid" src="~/img/blog/add.jpg" alt=""></a>
                         <div class="br"></div>
                     </aside>
                     <aside class="single_sidebar_widget post_category_widget">
