@@ -1,0 +1,49 @@
+﻿@model UserViewModel
+
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+            <form method="post">
+                <input type="hidden" asp-for="@Model.Article.ArticleId" value="@Model.Article.ArticleId" />
+                <table class="table table-bordered">
+
+                    <tr>
+                        <td>Status</td>
+                        <td style="font-size:20px">
+                            <label>
+                                <input type="radio" value="0" asp-for="@Model.Article.Status" />Pending
+                            </label>
+                            <label>
+                                <input type="radio" value="1" asp-for="@Model.Article.Status" />Published
+                            </label>
+                            <label>
+                                <input type="radio" value="2" asp-for="@Model.Article.Status" />Rejected
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Slider Post</td>
+                        <td style="font-size:20px">
+                            <label>
+                                <input type="radio" value="0" asp-for="@Model.Article.Slider" />Pending
+                            </label>
+                            <label>
+                                <input type="radio" value="1" asp-for="@Model.Article.Slider" />Published
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td width="25%">Category</td>
+                        <td>
+                            <select class="form-control" asp-items="@(new SelectList(Model.CategoryList,"CategoryId","CategoryName"))" asp-for="@Model.Article.CategoryId"></select>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+    </div>
+</div>
