@@ -8,22 +8,24 @@ namespace DapperFantom.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly CategoryService categoryService;
+        private readonly ArticleService articleService;
 
-        public HomeController(ILogger<HomeController> logger,
-            CategoryService _categoryService)
+        public HomeController(IServiceProvider serviceProvider)
         {
-            _logger = logger;
-            categoryService = _categoryService;
+            categoryService = serviceProvider.GetRequiredService<CategoryService>();
+            articleService = serviceProvider.GetRequiredService<ArticleService>();
         }
 
         public IActionResult Index()
         {
             List<Category> categories = categoryService.GetAll();
+            List<Article> articles = articleService.GetHome();
+
             GeneralViewModel model = new GeneralViewModel
             {
                 CategoryList = categories,
+                ArticleList = articles
             };
 
             return View(model);
