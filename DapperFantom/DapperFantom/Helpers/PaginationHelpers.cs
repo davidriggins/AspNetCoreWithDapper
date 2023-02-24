@@ -33,15 +33,19 @@ namespace DapperFantom.Helpers
             {
                 for (int i = 1; i < pageCount + 1; i++)
                 {
-                    pageHtml += "<li class='page-item'><a href='/Category/" + category.Slug + "/" + i + "' class='page-link'>" + i + "</a></li>";
-                }
+                    string active = i == page ? "active" : "";
 
-                string html = $@"<nav class='blog-pagination justify-content-center d-flex'>
-                                   <ul class='pagination'>
-                {pageHtml}
-                                   </ul>
-                                 </nav>";
+                    pageHtml += "<li class='page-item " + active + "'><a href='/Category/" + category.Slug + "/" + i + "' class='page-link'>" + i + "</a></li>";
+                }
             }
+
+            string html = $@"<nav class='blog-pagination justify-content-center d-flex'>
+                               <ul class='pagination'>
+                {pageHtml}
+                               </ul>
+                             </nav>";
+
+            paginationModel.Html = html;
 
             return paginationModel;
         }

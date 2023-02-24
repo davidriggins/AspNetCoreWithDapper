@@ -10,13 +10,15 @@ namespace DapperFantom.Controllers
     {
         private CategoryService categoryService;
         private ArticleService articleService;
-        private IServiceProvider serviceProvider;
+        private IServiceProvider service;
 
 
         public CategoryController(IServiceProvider serviceProvider)
         {
             categoryService = serviceProvider.GetRequiredService<CategoryService>();
             articleService = serviceProvider.GetRequiredService<ArticleService>();
+            service = serviceProvider;
+
         }
 
 
@@ -31,7 +33,7 @@ namespace DapperFantom.Controllers
                     List<Category> categories = categoryService.GetAll();
                     //List<Article> articles = articleService.GetByCategoryId(category.CategoryId);
 
-                    PaginationHelpers paginationHelper = new PaginationHelpers(serviceProvider);
+                    PaginationHelpers paginationHelper = new PaginationHelpers(service);
                     PaginationModel paginationModel = paginationHelper.CategoryPagination(category, page);
 
 
