@@ -36,6 +36,13 @@ namespace DapperFantom.Services
             return articles;
         }
 
+
+        public int GetCount(int categoryId)
+        {
+            return Convert.ToInt32(connection.ExecuteScalar("select count(CategoryId) from Articles where CategoryId =" + categoryId).ToString());
+        }
+
+
         public int Add(Article article)
         {
             var result = connection.Insert(article);
