@@ -20,5 +20,6 @@ namespace DapperFantom.Models
         public List<City> CityList { get; set; }
         public Article PrevArticle { get; set; }
         public Article NextArticle { get; set; }
+        public PaginationModel PaginationModel { get; set; }
     }
 }

@@ -182,16 +182,24 @@ namespace DapperFantom.Services
         }
 
 
-        public List<Article> GetByCategoryId(int id)
+        public List<Article> GetByCategoryId(int id, int page = 1)
         {
             List<Article> articles = new List<Article>();
 
             try
             {
                 var parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+                int pageSize = 3;
+                int offset = (page - 1) * 3;
 
-                string sql = @"select * from Articles where Status=1 and CategoryId = @id";
+                parameters.Add("@id", id);
+                parameters.Add("@offset", offset);
+                parameters.Add("@pagesize", pageSize);
+
+                string sql = @"select * from Articles where Status=1 and CategoryId = @id
+                               order by PublishingDate desc
+                               OFFSET @offset ROWS
+                               FETCH NEXT @pagesize ROWS ONLY";
 
                 articles = connection.Query<Article>(sql, parameters).ToList();
             }

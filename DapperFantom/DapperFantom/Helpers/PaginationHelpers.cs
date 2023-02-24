@@ -13,11 +13,20 @@ namespace DapperFantom.Helpers
             articleService = serviceProvider.GetRequiredService<ArticleService>();
         }
 
-        public PaginationHelpers CategoryPagination(Category category, int page)
+        public PaginationModel CategoryPagination(Category category, int page)
         {
             PaginationModel paginationModel = new PaginationModel();
             int totalCount = articleService.GetCount(category.CategoryId);
             paginationModel.TotalCount = totalCount;
+
+            decimal pageSize = Math.Ceiling(decimal.Parse(totalCount.ToString()) / 3);
+            int pageCount = (int)Math.Round(pageSize);
+
+            paginationModel.PageCount = pageCount;
+
+            List<Article> articles = articleService.GetByCategoryId(category.CategoryId);
+            paginationModel.ArticleList = articles;
+
 
 
             return paginationModel;
