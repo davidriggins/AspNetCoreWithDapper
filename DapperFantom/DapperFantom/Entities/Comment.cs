@@ -2,6 +2,7 @@
 {
     public class Comment
     {
+        [Dapper.Contrib.Extensions.Key]
         public int CommentId { get; set; }
         public int ArticleId { get; set; }
         public string Name { get; set; }
