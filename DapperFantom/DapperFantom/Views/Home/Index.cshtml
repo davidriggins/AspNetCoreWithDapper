@@ -4,7 +4,7 @@
 <section class="post_slider_area">
     <div class="post_slider_inner owl-carousel">
 
-        @foreach (var item in Model.ArticleList.Where(w=>w.Slider==1))
+        @foreach (var item in Model.ArticleList.Where(w => w.Slider == 1))
         {
             <div class="item">
                 <div class="post_s_item">
@@ -32,7 +32,7 @@
                 </div>
             </div>
         }
-        
+
 
     </div>
 </section>
@@ -44,7 +44,7 @@
             <div class="col-lg-8">
                 <div class="blog_left_sidebar">
 
-                    @foreach (var item in Model.ArticleList.Where(w=>w.Slider==0))
+                    @foreach (var item in Model.ArticleList.Where(w => w.Slider == 0))
                     {
                         <article class="blog_style1">
                             <div class="blog_img">
@@ -62,7 +62,7 @@
                                     {
                                         <p>@(item.Content)</p>
                                     }
-                                    
+
                                     <div class="date">
                                         <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @(item.PublishingDate.ToShortDateString())</a>
                                         <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @(item.CommentCount)</a>
@@ -100,15 +100,19 @@
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search Posts">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                            </span>
-                        </div><!-- /input-group -->
-                        <div class="br"></div>
-                    </aside>
+
+                    <form action="/Search" method="get">
+                        <aside class="single_sidebar_widget search_widget">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="q" placeholder="Search Posts">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                                </span>
+                            </div><!-- /input-group -->
+                            <div class="br"></div>
+                        </aside>
+                    </form>
+
                     <aside class="single_sidebar_widget author_widget">
                         <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
                         <h4>Charlie Barber</h4>

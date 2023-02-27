@@ -41,5 +41,17 @@ namespace DapperFantom.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Search()
+        {
+            string searchQuery = HttpContext.Request.Query["q"];
+            List<Article> articles = articleService.Search(searchQuery);
+            GeneralViewModel model = new GeneralViewModel 
+            { 
+                ArticleList = articles 
+            };
+
+            return View(model);
+        }
     }
 }

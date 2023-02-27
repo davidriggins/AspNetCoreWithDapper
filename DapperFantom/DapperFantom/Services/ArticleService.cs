@@ -56,6 +56,23 @@ namespace DapperFantom.Services
             }
         }
 
+
+        public List<Article> Search(string q)
+        {
+            List<Article> articles = new();
+            try
+            {
+                articles = connection.Query<Article>(@"select * from Articles where Status=1 and Articles.Title like @q or Articles.Content like @q order by ArticleId DESC", new { q = "%" + q + "%" }).ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return articles;
+        }
+
         public Article GetById(int id)
         {
             Article article = new();
