@@ -13,6 +13,7 @@ namespace DapperFantom.Controllers
         private CityService cityService;
         private IWebHostEnvironment hosting;
         private ArticleService articleService;
+        private CommentService commentService;
 
         public ArticleController(IServiceProvider serviceProvider)
         {
@@ -20,6 +21,7 @@ namespace DapperFantom.Controllers
             cityService = serviceProvider.GetRequiredService<CityService>();
             hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
             articleService = serviceProvider.GetRequiredService<ArticleService>();
+            commentService = serviceProvider.GetRequiredService<CommentService>();
         }
 
         public IActionResult Index()
@@ -98,12 +100,14 @@ namespace DapperFantom.Controllers
             Article article = articleService.GetByGuid(id);
             Article prevArt = articleService.GetPrev(article.ArticleId);
             Article nextArt = articleService.GetNext(article.ArticleId);
+            List<Comment> comments = commentService.GetByArticle(article.ArticleId);
 
             GeneralViewModel model = new GeneralViewModel
             {
                 Article = article,
                 PrevArticle = prevArt, 
-                NextArticle = nextArt
+                NextArticle = nextArt,
+                Comments = comments
             };
 
             return View(model);

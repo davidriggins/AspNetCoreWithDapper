@@ -11,6 +11,7 @@ namespace DapperFantom.Models
             CategoryList = new List<Category>();
             ArticleList = new List<Article>();
             CityList= new List<City>();
+            Comments = new List<Comment>();
         }
 
         public Category Category { get; set; }
@@ -21,5 +22,6 @@ namespace DapperFantom.Models
         public Article PrevArticle { get; set; }
         public Article NextArticle { get; set; }
         public PaginationModel PaginationModel { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }
