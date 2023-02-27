@@ -73,6 +73,50 @@ namespace DapperFantom.Services
             return articles;
         }
 
+
+        public int CountArticles()
+        {
+            return Convert.ToInt32(connection.ExecuteScalar("select count(ArticleId) from Articles where Status=1").ToString());
+        }
+
+
+        public List<Article> GetArticles(int page = 1)
+        {
+            List<Article> articles= new List<Article>();
+
+            try
+            {
+                var parameters = new DynamicParameters();
+                int pagesize = 3;
+                int offset = (page - 1) * 3;
+
+                parameters.Add("@offset", offset);
+                parameters.Add("@pagesize", pagesize);
+
+                string sql = @"select * from Articles
+                               inner join Categorys as cat ON cat.CategoryId = Articles.CategoryId
+                               where HomeView=1 and Status=1 or Slider=1
+                               order by PublishingDate desc
+                               OFFSET @offset ROWS
+                               FETCH NEXT @pagesize ROWS ONLY";
+
+                articles = connection.Query<Article, Category, Article>(sql, (article, category) =>
+                {
+                    article.Category = category;
+                    return article;
+                }, parameters, splitOn: "CategoryId").ToList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return articles;
+
+        }
+
+
         public Article GetById(int id)
         {
             Article article = new();
