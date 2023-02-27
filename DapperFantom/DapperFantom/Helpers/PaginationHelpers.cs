@@ -49,5 +49,43 @@ namespace DapperFantom.Helpers
 
             return paginationModel;
         }
+
+
+        public PaginationModel ArticlePagination(int page)
+        {
+            PaginationModel paginationModel = new PaginationModel();
+            int totalCount = articleService.CountArticles();
+            paginationModel.TotalCount = totalCount;
+
+            decimal pageSize = Math.Ceiling(decimal.Parse(totalCount.ToString()) / 3);
+            int pageCount = (int)Math.Round(pageSize);
+
+            paginationModel.PageCount = pageCount;
+
+            List<Article> articles = articleService.GetArticles(page);
+            paginationModel.ArticleList = articles;
+
+            string pageHtml = "";
+
+            if (pageCount > 1)
+            {
+                for (int i = 1; i < pageCount + 1; i++)
+                {
+                    string active = i == page ? "active" : "";
+
+                    pageHtml += "<li class='page-item " + active + "'><a href='/?page=/" + i + "' class='page-link'>" + i + "</a></li>";
+                }
+            }
+
+            string html = $@"<nav class='blog-pagination justify-content-center d-flex'>
+                               <ul class='pagination'>
+                {pageHtml}
+                               </ul>
+                             </nav>";
+
+            paginationModel.Html = html;
+
+            return paginationModel;
+        }
     }
 }
