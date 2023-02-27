@@ -27,7 +27,7 @@ namespace DapperFantom.Services
                 parameters.Add("@status", status);
                 articles = connection.Query<Article>(@"select * from Articles where Status=@status", parameters).ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;

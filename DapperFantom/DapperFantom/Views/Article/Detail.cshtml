@@ -25,15 +25,12 @@
                     <img class="img-fluid" src="~/upload/@Model.Article.Image" alt="">
                     <a href="#"><h4>@Model.Article.Title</h4></a>
                     <div class="user_details">
-                        <div class="float-left">
-                            <a href="#">Lifestyle</a>
-                            <a href="#">Gadget</a>
-                        </div>
+
                         <div class="float-right">
                             <div class="media">
                                 <div class="media-body">
-                                    <h5>Mark wiens</h5>
-                                    <p>12 Dec, 2017 11:21 am</p>
+                                    <h5>@Model.Article.NameSurname</h5>
+                                    <p>@Model.Article.PublishingDate</p>
                                 </div>
                                 <div class="d-flex">
                                     <img src="~/img/blog/user-img.jpg" alt="">
@@ -43,8 +40,8 @@
                     </div>
                     <p>@Model.Article.Content</p>
                     <div class="news_d_footer">
-                        <a href="#"><i class="lnr lnr lnr-heart"></i>Lily and 4 people like this</a>
-                        <a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>06 Comments</a>
+                        <a href="#"><i class="lnr lnr lnr-heart"></i>Views: @Model.Article.Hit</a>
+                        <a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>@Model.Comments.Count Comments</a>
                         <div class="news_socail ml-auto">
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>

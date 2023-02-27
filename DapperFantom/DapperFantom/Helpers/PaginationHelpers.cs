@@ -73,7 +73,7 @@ namespace DapperFantom.Helpers
                 {
                     string active = i == page ? "active" : "";
 
-                    pageHtml += "<li class='page-item " + active + "'><a href='/?page=/" + i + "' class='page-link'>" + i + "</a></li>";
+                    pageHtml += "<li class='page-item " + active + "'><a href='/?page=" + i + "' class='page-link'>" + i + "</a></li>";
                 }
             }
 
