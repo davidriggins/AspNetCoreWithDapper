@@ -1,4 +1,5 @@
 ﻿using DapperFantom.Entities;
+using DapperFantom.Helpers;
 using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,22 +11,29 @@ namespace DapperFantom.Controllers
     {
         private readonly CategoryService categoryService;
         private readonly ArticleService articleService;
+        private readonly IServiceProvider service;
 
         public HomeController(IServiceProvider serviceProvider)
         {
             categoryService = serviceProvider.GetRequiredService<CategoryService>();
             articleService = serviceProvider.GetRequiredService<ArticleService>();
+            service = serviceProvider;
         }
 
         public IActionResult Index()
         {
-            List<Category> categories = categoryService.GetAll();
-            List<Article> articles = articleService.GetHome();
+            //List<Category> categories = categoryService.GetAll();
+            //List<Article> articles = articleService.GetHome();
+
+            int page = HttpContext.Request.Query["page"].Count == 0 ? 1 : Int32.Parse(HttpContext.Request.Query["page"]);
+            PaginationHelpers paginationHelpers = new PaginationHelpers(service);
+            PaginationModel paginationModel = paginationHelpers.ArticlePagination(page);
 
             GeneralViewModel model = new GeneralViewModel
             {
-                CategoryList = categories,
-                ArticleList = articles
+                //CategoryList = categories,
+                //ArticleList = articles
+                PaginationModel = paginationModel,
             };
 
             return View(model);
