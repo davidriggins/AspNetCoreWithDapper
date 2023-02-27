@@ -1,42 +1,20 @@
 ﻿@model GeneralViewModel
 
-<!--================Post Slider Area =================-->
-<section class="post_slider_area">
-    <div class="post_slider_inner owl-carousel">
-
-        @foreach (var item in Model.ArticleList.Where(w => w.Slider == 1))
-        {
-            <div class="item">
-                <div class="post_s_item">
-                    <div class="post_img">
-                        <img src="~/upload/@item.Image" alt="">
-                    </div>
-                    <div class="post_text">
-                        <a class="cat" href="/Category/@(item.Category.Slug)">@(item.Category.CategoryName)</a>
-                        <a asp-controller="Article" asp-action="Detail" asp-route-id="@item.Guid"><h4>@item.Title</h4></a>
-
-                        @if (item.Content.Length > 20)
-                        {
-                            <p>@(item.Content.Substring(0, 20))</p>
-                        }
-                        else
-                        {
-                            <p>@(item.Content)</p>
-                        }
-
-                        <div class="date">
-                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @(item.PublishingDate.ToShortDateString())</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @item.CommentCount</a>
-                        </div>
-                    </div>
+<!--================Home Banner Area =================-->
+<section class="banner_area">
+    <div class="banner_inner d-flex align-items-center">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="banner_content text-center">
+                <h2>Search Results</h2>
+                <div class="page_link">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
                 </div>
             </div>
-        }
-
-
+        </div>
     </div>
 </section>
-<!--================End Post Slider Area =================-->
+<!--================End Home Banner Area =================-->
 <!--================Blog Area =================-->
 <section class="blog_area p_120">
     <div class="container">
@@ -44,7 +22,7 @@
             <div class="col-lg-8">
                 <div class="blog_left_sidebar">
 
-                    @foreach (var item in Model.ArticleList.Where(w => w.Slider == 0))
+                    @foreach (var item in Model.ArticleList)
                     {
                         <article class="blog_style1">
                             <div class="blog_img">
@@ -52,7 +30,6 @@
                             </div>
                             <div class="blog_text">
                                 <div class="blog_text_inner">
-                                    <a class="cat" href="/Category/@(item.Category.Slug)">@(item.Category.CategoryName)</a>
                                     <a asp-controller="Article" asp-action="Detail" asp-route-id="@item.Guid"><h4>@(item.Title)</h4></a>
                                     @if (item.Content.Length > 175)
                                     {
@@ -73,46 +50,19 @@
                     }
 
 
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-left"></span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a href="#" class="page-link">01</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                            <li class="page-item"><a href="#" class="page-link">03</a></li>
-                            <li class="page-item"><a href="#" class="page-link">04</a></li>
-                            <li class="page-item"><a href="#" class="page-link">09</a></li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">
-                                        <span class="lnr lnr-chevron-right"></span>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
-
-                    <form asp-asp-controller="Home" asp-action="Search" method="get">
-                        <aside class="single_sidebar_widget search_widget">
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="q" placeholder="Search Posts">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                                </span>
-                            </div><!-- /input-group -->
-                            <div class="br"></div>
-                        </aside>
-                    </form>
-
+                    <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search Posts">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="br"></div>
+                    </aside>
                     <aside class="single_sidebar_widget author_widget">
                         <img class="author_img rounded-circle" src="img/blog/author.png" alt="">
                         <h4>Charlie Barber</h4>
@@ -166,15 +116,12 @@
                         <h4 class="widget_title">Post Catgories</h4>
                         <ul class="list cat-list">
 
-                            @foreach (var category in Model.CategoryList)
-                            {
                                 <li>
                                     <a href="#" class="d-flex justify-content-between">
-                                        <p>@category.CategoryName</p>
+                                        <p>Category Name</p>
                                         <p>37</p>
                                     </a>
                                 </li>
-                            }
 
                         </ul>
                         <div class="br"></div>

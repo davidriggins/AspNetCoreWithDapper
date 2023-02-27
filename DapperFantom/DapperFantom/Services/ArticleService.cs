@@ -62,7 +62,7 @@ namespace DapperFantom.Services
             List<Article> articles = new();
             try
             {
-                articles = connection.Query<Article>(@"select * from Articles where Status=1 and Articles.Title like @q or Articles.Content like @q order by ArticleId DESC", new { q = "%" + q + "%" }).ToList();
+                articles = connection.Query<Article>(@"select * from Articles where Status=1 and Articles.Title like @q or Articles.Content like @q order by ArticleId DESC", new { q = "%" + q + "%" }).Take(5).ToList();
             }
             catch (Exception)
             {
